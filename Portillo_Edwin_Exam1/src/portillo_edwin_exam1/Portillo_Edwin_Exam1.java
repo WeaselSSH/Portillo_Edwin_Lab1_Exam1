@@ -1,11 +1,15 @@
 package portillo_edwin_exam1;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class Portillo_Edwin_Exam1 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+
+        Random random = new Random();
 
         int opcion = 0;
 
@@ -25,6 +29,8 @@ public class Portillo_Edwin_Exam1 {
             opcion = scanner.nextInt();
 
             switch (opcion) {
+
+                //Case pirámide
                 case 1:
                     int filas;
                     int numero = 1; //se inicializa en 1 para empezar con el primer número impar
@@ -48,16 +54,147 @@ public class Portillo_Edwin_Exam1 {
 
                     break;
 
+                //Case Encriptado
                 case 2:
+                    int opcionEncriptar = 0;
+
+                    String mensajeIngresado,
+                     mensajeEncriptado = "",
+                     mensajeDesencriptado = "";
+                    char letraActual;
+
+                    //bucle menú encriptar
+                    while (opcionEncriptar != 3) {
+                        System.out.println();
+                        System.out.println("-----MENU ENCRIPTAR Y DESENCRIPTAR-----");
+                        System.out.println();
+                        System.out.println("1. Encriptar mensaje");
+                        System.out.println("2. Desencriptar mensaje");
+                        System.out.println("3. Regresar");
+                        System.out.println();
+
+                        System.out.print("Seleccione una opción [1-3]: ");
+                        opcionEncriptar = scanner.nextInt();
+
+                        switch (opcionEncriptar) {
+                            case 1:
+                                mensajeEncriptado = ""; //reinicio de variable
+
+                                System.out.println();
+                                System.out.print("Favor ingrese un mensaje a encriptar: ");
+                                mensajeIngresado = scanner.next();
+
+                                for (int i = 0; i <= mensajeIngresado.length() - 1; i++) {
+                                    letraActual = mensajeIngresado.charAt(i);
+
+                                    if (letraActual >= 'A' && letraActual <= 'Z') { // verifica si la letra está dentro del rango ascii A-Z (mayúscula)
+
+                                        /*en esta operación se resta 'A' a la letra que se evalua con el objetivo de sacar la posición real. Luego, eso se le resta a Z
+                                        con el objetivo de invertir el caracter
+                                         */
+                                        mensajeEncriptado += (char) ('Z' - (letraActual - 'A'));
+
+                                    } else if (letraActual >= 'a' && letraActual <= 'z') { //misma lógica que el if previo
+                                        mensajeEncriptado += (char) ('z' - (letraActual - 'a'));
+                                    } else {
+                                        mensajeEncriptado += letraActual; //si no está en ninguno de los rangos previos quiere decir que no es una letra, por lo que no se toca
+                                    }
+                                }
+
+                                System.out.println("Mensaje desencriptado: " + mensajeEncriptado);
+
+                                break;
+
+                            case 2:
+                                //Exactamente la misma lógica al case de encriptación, puesto que es "simétrica" la operación
+                                mensajeDesencriptado = "";
+
+                                System.out.println();
+                                System.out.print("Favor ingrese un mensaje a desencriptar: ");
+                                mensajeIngresado = scanner.next();
+
+                                for (int i = 0; i <= mensajeIngresado.length() - 1; i++) {
+                                    letraActual = mensajeIngresado.charAt(i);
+
+                                    if (letraActual >= 'A' && letraActual <= 'Z') {
+                                        mensajeDesencriptado += (char) ('Z' - (letraActual - 'A'));
+                                    } else if (letraActual >= 'a' && letraActual <= 'z') {
+                                        mensajeDesencriptado += (char) ('z' - (letraActual - 'a'));
+                                    } else {
+                                        mensajeDesencriptado += letraActual;
+                                    }
+                                }
+
+                                System.out.println("Mensaje desencriptado: " + mensajeDesencriptado);
+
+                                break;
+
+                            case 3:
+                                System.out.println();
+                                System.out.println("Saliendo de la opción encriptar...");
+                                break;
+
+                            default:
+                                System.out.println();
+                                System.out.println("Error: opción ingresada no existe.");
+                        }
+                    }
+
                     break;
 
+                //Case piedra papel o tijera
                 case 3:
+
                     break;
 
+                //Case Adivinar número
                 case 4:
+                    int intentos = 0;
+                    int numeroGenerado = random.nextInt(100);
+                    int numeroIngresado = 101; //se inicializa en 101 para que no entre en conflicto con el número generado
+
+                    System.out.println();
+                    System.out.println("-----Adivinar Número-----");
+                    System.out.println();
+
+                    while (numeroIngresado != numeroGenerado) {
+                        System.out.println();
+                        System.out.print("Favor ingrese el número a comparar: ");
+                        numeroIngresado = scanner.nextInt();
+
+                        if (intentos == 10) {
+                            System.out.println();
+                            System.out.println("Número de intentos agotados.");
+                            System.out.println("El número era: " + numeroGenerado);
+                        } else if (numeroGenerado > numeroIngresado) {
+                            System.out.println();
+                            System.out.println("El número a adivinar es mayor al número ingresado.");
+                            intentos++;
+
+                            System.out.println();
+                            System.out.println("Lleva " + intentos + " intento.");
+                            System.out.println("Tiene " + (10 - intentos) + " restantes.");
+                        } else if (numeroGenerado < numeroIngresado) {
+                            System.out.println();
+                            System.out.println("El número a adivinar es menor al número ingresado.");
+                            intentos++;
+
+                            System.out.println();
+                            System.out.println("Lleva " + intentos + " intento.");
+                            System.out.println("Tiene " + (10 - intentos) + " restantes.");
+                        } else {
+                            intentos++;
+                            System.out.println();
+                            System.out.println("Felicidades!");
+                            System.out.println("Ha acertado el número correcto al intento número " + intentos + "!");
+                        }
+
+                    }
+
                     break;
 
                 case 5:
+                    System.out.println();
                     System.out.println("Saliendo del sistema...");
                     break;
 
