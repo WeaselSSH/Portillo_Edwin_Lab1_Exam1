@@ -217,7 +217,7 @@ public class Portillo_Edwin_Exam1 {
                             System.out.println("Saliendo del juego...");
                         }
 
-                    } while (jugarNuevamente.equals("si"));
+                    } while (jugarNuevamente.equalsIgnoreCase("si"));
 
                     break;
 
