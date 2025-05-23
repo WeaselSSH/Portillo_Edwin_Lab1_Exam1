@@ -194,7 +194,7 @@ public class Portillo_Edwin_Exam1 {
                             System.out.println("Empate :/");
                             System.out.println("Opción ingresada por la computadora: " + eleccionComputadora);
 
-                            //comparación de elecciones
+                        //comparación de elecciones
                         } else if (eleccionUsuario.equalsIgnoreCase("piedra") && eleccionComputadora.equalsIgnoreCase("tijera")
                                 || eleccionUsuario.equalsIgnoreCase("papel") && eleccionComputadora.equalsIgnoreCase("piedra")
                                 || eleccionUsuario.equalsIgnoreCase("tijera") && eleccionComputadora.equalsIgnoreCase("papel")) {
@@ -202,6 +202,7 @@ public class Portillo_Edwin_Exam1 {
                             System.out.println();
                             System.out.println("Ganaste :D!");
                             System.out.println("Opción ingresada por la computadora: " + eleccionComputadora);
+                            
                         } else {
                             System.out.println();
                             System.out.println("Perdiste :( ");
@@ -249,7 +250,7 @@ public class Portillo_Edwin_Exam1 {
 
                             System.out.println();
                             System.out.println("Lleva " + intentos + " intento(s).");
-                            System.out.println("Tiene " + (10 - intentos) + " restantes.");
+                            System.out.println("Tiene " + (10 - intentos) + " restantes."); //se resta intentos a 10 para mostar los intentos restantes 
 
                         } else if (numeroGenerado < numeroIngresado) {
                             System.out.println();
