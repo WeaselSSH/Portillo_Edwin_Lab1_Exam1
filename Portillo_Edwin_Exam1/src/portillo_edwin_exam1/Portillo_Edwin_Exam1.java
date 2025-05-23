@@ -9,6 +9,7 @@ public class Portillo_Edwin_Exam1 {
 
         int opcion = 0;
 
+        //bucle menú principal
         while (opcion != 5) {
             System.out.println();
             System.out.println("----MENU PRINCIPAL----");
@@ -25,7 +26,26 @@ public class Portillo_Edwin_Exam1 {
 
             switch (opcion) {
                 case 1:
-                        
+                    int filas;
+                    int numero = 1; //se inicializa en 1 para empezar con el primer número impar
+
+                    System.out.println();
+                    System.out.println("-----Pirámide-----");
+                    System.out.println();
+                    System.out.print("Favor ingrese el número de filas a mostar: ");
+                    filas = scanner.nextInt();
+
+                    for (int i = 1; i <= filas; i++) {
+                        int sumaNumeros = 0;
+                        for (int j = 1; j <= i; j++) {
+                            System.out.print(numero + " ");
+                            sumaNumeros += numero;
+                            numero += 2; //se suma 2 a la variable para saltarse el siguiente número, puesto que es par
+                        }
+
+                        System.out.println("= " + sumaNumeros); //impresión del resultado de los números impresos en cada fila
+                    }
+
                     break;
 
                 case 2:
@@ -40,6 +60,10 @@ public class Portillo_Edwin_Exam1 {
                 case 5:
                     System.out.println("Saliendo del sistema...");
                     break;
+
+                default:
+                    System.out.println();
+                    System.out.println("Error: opción ingresada no existe.");
             }
 
         }
