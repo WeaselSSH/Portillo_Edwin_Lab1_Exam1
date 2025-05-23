@@ -59,8 +59,8 @@ public class Portillo_Edwin_Exam1 {
                     int opcionEncriptar = 0;
 
                     String mensajeIngresado,
-                     mensajeEncriptado = "",
-                     mensajeDesencriptado = "";
+                     mensajeEncriptado,
+                     mensajeDesencriptado;
                     char letraActual;
 
                     //bucle menú encriptar
@@ -144,20 +144,78 @@ public class Portillo_Edwin_Exam1 {
 
                 //Case piedra papel o tijera
                 case 3:
+                    String eleccionUsuario;
+                    String eleccionComputadora;
+                    String jugarNuevamente;
+
+                    System.out.println();
+                    System.out.println("BIENVENIDO AL JUEGO PIEDRA PAPEL O TIJERA!");
+
+                    //bucle del juego
+                    do {
+
+                        while (true) { //bucle para verificar que la opción ingresada por el usuario sea válida
+                            System.out.println();
+                            System.out.print("Escoja lo que desea jugar (piedra, papel o tijera): ");
+                            eleccionUsuario = scanner.next();
+
+                            if (eleccionUsuario.equalsIgnoreCase("piedra") || eleccionUsuario.equalsIgnoreCase("tijera") || eleccionUsuario.equalsIgnoreCase("papel")) {
+                                break;
+                            } else {
+                                System.out.println("Opción inválida. Favor intente de nuevo.");
+                            }
+                        }
+
+                        int numeroComputadora = random.nextInt(3) + 1;
+
+                        if (numeroComputadora == 1) {
+                            eleccionComputadora = "piedra";
+                        } else if (numeroComputadora == 2) {
+                            eleccionComputadora = "papel";
+                        } else {
+                            eleccionComputadora = "tijera";
+                        }
+
+                        if (eleccionUsuario.equals(eleccionComputadora)) {
+                            System.out.println();
+                            System.out.println("Empate :/");
+                            System.out.println("Opción ingresada por la computadora: " + eleccionComputadora);
+                        } else if (eleccionUsuario.equals("piedra") && eleccionComputadora.equals("tijera")
+                                || eleccionUsuario.equals("papel") && eleccionComputadora.equals("piedra")
+                                || eleccionUsuario.equals("tijera") && eleccionComputadora.equals("papel")) {
+
+                            System.out.println();
+                            System.out.println("Ganaste :D!");
+                            System.out.println("Opción ingresada por la computadora: " + eleccionComputadora);
+                        } else {
+                            System.out.println();
+                            System.out.println("Perdiste :( ");
+                            System.out.println("Opción ingresada por la computadora: " + eleccionComputadora);
+                        }
+
+                        System.out.println();
+                        System.out.println("Desea seguir jugando? (si/no)");
+                        jugarNuevamente = scanner.next();
+
+                        if (jugarNuevamente.equals("no")) {
+                            System.out.println();
+                            System.out.println("Saliendo del juego...");
+                        }
+
+                    } while (jugarNuevamente.equals("si"));
 
                     break;
 
                 //Case Adivinar número
                 case 4:
                     int intentos = 0;
-                    int numeroGenerado = random.nextInt(100);
+                    int numeroGenerado = random.nextInt(100) + 1; //se suma 1 debido a que la función random incluye el 0
                     int numeroIngresado = 101; //se inicializa en 101 para que no entre en conflicto con el número generado
 
                     System.out.println();
-                    System.out.println("-----Adivinar Número-----");
-                    System.out.println();
+                    System.out.println("-----ADIVINAR NUMERO-----");
 
-                    while (numeroIngresado != numeroGenerado) {
+                    while (numeroIngresado != numeroGenerado && intentos < 11) { //la comparación se hace con 11 debido a que si fuera 10 no se mostraría el primer if
                         System.out.println();
                         System.out.print("Favor ingrese el número a comparar: ");
                         numeroIngresado = scanner.nextInt();
@@ -166,6 +224,7 @@ public class Portillo_Edwin_Exam1 {
                             System.out.println();
                             System.out.println("Número de intentos agotados.");
                             System.out.println("El número era: " + numeroGenerado);
+                            intentos++; //se suma intentos para que sea 11 y se pueda salir del bucle
                         } else if (numeroGenerado > numeroIngresado) {
                             System.out.println();
                             System.out.println("El número a adivinar es mayor al número ingresado.");
