@@ -13,7 +13,7 @@ public class Portillo_Edwin_Exam1 {
 
         int opcion = 0;
 
-        //bucle menú principal
+        //Bucle menú principal
         while (opcion != 5) {
             System.out.println();
             System.out.println("----MENU PRINCIPAL----");
@@ -23,8 +23,8 @@ public class Portillo_Edwin_Exam1 {
             System.out.println("3. Juego de piedra, papel o tijera");
             System.out.println("4. Adivinar");
             System.out.println("5. Salir del Sistema");
+            
             System.out.println();
-
             System.out.print("Seleccione una opción [1-5]: ");
             opcion = scanner.nextInt();
 
@@ -41,15 +41,23 @@ public class Portillo_Edwin_Exam1 {
                     System.out.print("Favor ingrese el número de filas a mostar: ");
                     filas = scanner.nextInt();
 
-                    for (int i = 1; i <= filas; i++) {
+                    System.out.println();
+                    for (int i = 1; i <= filas; i++) { //for para contar el número de filas 
+                        
                         int sumaNumeros = 0;
-                        for (int j = 1; j <= i; j++) {
+                        
+                        for (int j = 1; j <= i; j++) { //for para imprimir la secuencia de números
                             System.out.print(numero + " ");
                             sumaNumeros += numero;
                             numero += 2; //se suma 2 a la variable para saltarse el siguiente número, puesto que es par
                         }
 
                         System.out.println("= " + sumaNumeros); //impresión del resultado de los números impresos en cada fila
+                    }
+                    
+                    if (filas == 0) {
+                        System.out.println();
+                        System.out.println("No se imprimió ninguna fila.");
                     }
 
                     break;
@@ -71,8 +79,8 @@ public class Portillo_Edwin_Exam1 {
                         System.out.println("1. Encriptar mensaje");
                         System.out.println("2. Desencriptar mensaje");
                         System.out.println("3. Regresar");
+                        
                         System.out.println();
-
                         System.out.print("Seleccione una opción [1-3]: ");
                         opcionEncriptar = scanner.nextInt();
 
@@ -88,7 +96,7 @@ public class Portillo_Edwin_Exam1 {
                                     letraActual = mensajeIngresado.charAt(i);
 
                                     if (letraActual >= 'A' && letraActual <= 'Z') { // verifica si la letra está dentro del rango ascii A-Z (mayúscula)
-
+                                        
                                         /*en esta operación se resta 'A' a la letra que se evalua con el objetivo de sacar la posición real. Luego, eso se le resta a Z
                                         con el objetivo de invertir el caracter
                                          */
@@ -99,9 +107,11 @@ public class Portillo_Edwin_Exam1 {
                                     } else {
                                         mensajeEncriptado += letraActual; //si no está en ninguno de los rangos previos quiere decir que no es una letra, por lo que no se toca
                                     }
+                                    
                                 }
 
-                                System.out.println("Mensaje desencriptado: " + mensajeEncriptado);
+                                System.out.println();
+                                System.out.println("Mensaje encriptado: " + mensajeEncriptado);
 
                                 break;
 
@@ -125,6 +135,7 @@ public class Portillo_Edwin_Exam1 {
                                     }
                                 }
 
+                                System.out.println();
                                 System.out.println("Mensaje desencriptado: " + mensajeDesencriptado);
 
                                 break;
@@ -166,9 +177,9 @@ public class Portillo_Edwin_Exam1 {
                             }
                         }
 
-                        int numeroComputadora = random.nextInt(3) + 1;
+                        int numeroComputadora = random.nextInt(3) + 1; //se suma 1 a la generación del número random, puesto que el 0 va incluido en el random
 
-                        if (numeroComputadora == 1) {
+                        if (numeroComputadora == 1) { 
                             eleccionComputadora = "piedra";
                         } else if (numeroComputadora == 2) {
                             eleccionComputadora = "papel";
@@ -176,13 +187,15 @@ public class Portillo_Edwin_Exam1 {
                             eleccionComputadora = "tijera";
                         }
 
-                        if (eleccionUsuario.equals(eleccionComputadora)) {
+                        if (eleccionUsuario.equalsIgnoreCase(eleccionComputadora)) {
                             System.out.println();
                             System.out.println("Empate :/");
                             System.out.println("Opción ingresada por la computadora: " + eleccionComputadora);
-                        } else if (eleccionUsuario.equals("piedra") && eleccionComputadora.equals("tijera")
-                                || eleccionUsuario.equals("papel") && eleccionComputadora.equals("piedra")
-                                || eleccionUsuario.equals("tijera") && eleccionComputadora.equals("papel")) {
+                            
+                        //comparación de elecciones
+                        } else if (eleccionUsuario.equalsIgnoreCase("piedra") && eleccionComputadora.equalsIgnoreCase("tijera")
+                                || eleccionUsuario.equalsIgnoreCase("papel") && eleccionComputadora.equalsIgnoreCase("piedra")
+                                || eleccionUsuario.equalsIgnoreCase("tijera") && eleccionComputadora.equalsIgnoreCase("papel")) {
 
                             System.out.println();
                             System.out.println("Ganaste :D!");
@@ -197,7 +210,7 @@ public class Portillo_Edwin_Exam1 {
                         System.out.println("Desea seguir jugando? (si/no)");
                         jugarNuevamente = scanner.next();
 
-                        if (jugarNuevamente.equals("no")) {
+                        if (jugarNuevamente.equalsIgnoreCase("no")) {
                             System.out.println();
                             System.out.println("Saliendo del juego...");
                         }
@@ -215,23 +228,23 @@ public class Portillo_Edwin_Exam1 {
                     System.out.println();
                     System.out.println("-----ADIVINAR NUMERO-----");
 
-                    while (numeroIngresado != numeroGenerado && intentos < 11) { //la comparación se hace con 11 debido a que si fuera 10 no se mostraría el primer if
+                    while (numeroIngresado != numeroGenerado && intentos < 10) { 
                         System.out.println();
-                        System.out.print("Favor ingrese el número a comparar: ");
+                        System.out.print("Favor ingrese el número que desea adivinar: ");
                         numeroIngresado = scanner.nextInt();
 
-                        if (intentos == 10) {
+                        if (intentos == 9) {
                             System.out.println();
                             System.out.println("Número de intentos agotados.");
                             System.out.println("El número era: " + numeroGenerado);
-                            intentos++; //se suma intentos para que sea 11 y se pueda salir del bucle
+                            intentos++; 
                         } else if (numeroGenerado > numeroIngresado) {
                             System.out.println();
                             System.out.println("El número a adivinar es mayor al número ingresado.");
                             intentos++;
 
                             System.out.println();
-                            System.out.println("Lleva " + intentos + " intento.");
+                            System.out.println("Lleva " + intentos + " intento(s).");
                             System.out.println("Tiene " + (10 - intentos) + " restantes.");
                         } else if (numeroGenerado < numeroIngresado) {
                             System.out.println();
@@ -239,7 +252,7 @@ public class Portillo_Edwin_Exam1 {
                             intentos++;
 
                             System.out.println();
-                            System.out.println("Lleva " + intentos + " intento.");
+                            System.out.println("Lleva " + intentos + " intento(s).");
                             System.out.println("Tiene " + (10 - intentos) + " restantes.");
                         } else {
                             intentos++;
